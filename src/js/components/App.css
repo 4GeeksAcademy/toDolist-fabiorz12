@@ -1,17 +1,84 @@
-/* Center content both vertically and horizontally */
 body {
-    background: rgb(120, 113, 113);
+    background: rgb(255, 253, 208); 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: 'Courier New', Courier, monospace; 
 }
 
-.todo-container{
+.todo-container {
     background: #fff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.todo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 24px,
+        rgba(0, 0, 0, 0.1) 25px
+    ); 
+    z-index: -1;
+}
+
+.todo-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #ff6347; 
+    z-index: -1;
+}
+
+/* Estilos generales para la lista */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* Estilos para los elementos de la lista */
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+/* Estilos del botón de eliminar */
+.delete-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    
+    /* Ocultar botón por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Mostrar botón cuando el cursor pasa sobre el <li> */
+li:hover .delete-btn {
+    opacity: 1;
+    visibility: visible;
 }
